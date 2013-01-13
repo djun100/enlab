@@ -9,5 +9,5 @@ import com.wiloon.enlab.entity.User;
  * Time: 4:43 PM
  */
 public interface AccountService {
-    public User findUserByName(String name);
+    public User findUserByName(String name, char[] password);
 }

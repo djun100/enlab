@@ -1,5 +1,7 @@
 package com.wiloon.enlab.service;
 
+import com.wiloon.enlab.core.dao.IGenericDao;
+import com.wiloon.enlab.core.service.impl.GenericService;
 import com.wiloon.enlab.entity.User;
 
 /**
@@ -8,12 +10,21 @@ import com.wiloon.enlab.entity.User;
  * Date: 1/6/13
  * Time: 4:45 PM
  */
-public class AccountServiceImpl implements AccountService {
+public class AccountServiceImpl extends GenericService<User, Long> implements AccountService {
+
+    public AccountServiceImpl(IGenericDao<User, Long> genericDao) {
+        super(genericDao);    //To change body of overridden methods use File | Settings | File Templates.
+    }
+
     @Override
-    public User findUserByName(String name) {
+    public User findUserByName(String userName, char[] password) {
         User user = new User();
-        user.setUserName("user0");
-        user.setPassword("password0");
-        return user;
+        user.setUserName(userName);
+        user.setPassword(new String(password));
+        User usr = genericDao.getObject("findByNameAndPassword", user);
+        if (user != null) {
+            logger.debug("account service, find user:" + usr.getUserName() + "/" + usr.getPassword());
+        }
+        return usr;
     }
 }

@@ -9,7 +9,7 @@ import com.wiloon.enlab.model.en.service.impl.WebDictService;
 
 public class YouDaoDictTest {
 
-	@Test
+	//@Test
 	public void youDaoDictTest() {
 		WebDictService wds = new WebDictService();
 		ECP ecp = wds.translate("test");
@@ -31,7 +31,7 @@ public class YouDaoDictTest {
 		Assert.assertEquals("[taliban]", ecp.getPronunciation());
 	}
 
-	@Test
+	//@Test
 	public void youDaoDictBeanOil() {
 		String word = "bean+oil";
 		WebDictService wds = new WebDictService();

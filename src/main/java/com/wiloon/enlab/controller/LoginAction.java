@@ -19,7 +19,9 @@ public class LoginAction extends ActionSupport {
 
     public String login() {
         logger.debug("login action start.");
+        logger.debug("user name/password:" + userName + "/" + password);
         try {
+
             UsernamePasswordToken token = new UsernamePasswordToken(userName, password);
             Subject subject = SecurityUtils.getSubject();
             subject.login(token);

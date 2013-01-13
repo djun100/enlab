@@ -8,13 +8,13 @@ import org.junit.Test;
 public class ECPInfoTest {
 	EnInfo ei;
 
-	@Before
+	//@Before
 	public void before() {
 		ei = new EnInfo();
 		ei.setWordCount(7719);
 	}
 
-	@Test
+	//@Test
 	public void wordCountToBin() {
 
 		assertEquals("0001111000100111", ei.getWordCountBin());

@@ -11,7 +11,7 @@ import org.junit.Test;
  * Time: 5:00 PM
  */
 public class JodaTimeTest {
-    @Test
+    //@Test
     public void fxDateTime() {
         //yyyy-MM-dd HH:mm:ss
         DateTime dt2 = DateTimeFormat.forPattern("[MM月dd日 HH时mm分 ]").parseDateTime("[09月14日 23时09分 ]");

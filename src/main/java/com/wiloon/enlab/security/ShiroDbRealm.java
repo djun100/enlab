@@ -30,7 +30,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
     AccountService accountService;
 
     public ShiroDbRealm() {
-        accountService = new AccountServiceImpl();
+
     }
 
     @Override
@@ -41,14 +41,23 @@ public class ShiroDbRealm extends AuthorizingRealm {
         return info;
     }
 
+    //authentication
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException {
         logger.debug("shiro do get authentication info start.");
-
+        SimpleAuthenticationInfo info = null;
         UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
-        User user = accountService.findUserByName(token.getUsername());
+        if (token.getUsername() != null) {
+            User user = accountService.findUserByName(token.getUsername(), token.getPassword());
 
-        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user.getUserName(), user.getPassword(), user.getUserName());
+            if (user != null) {
+                info = new SimpleAuthenticationInfo(user.getUserName(), user.getPassword(), user.getUserName());
+                logger.debug("create authentication info.");
+            }
+        } else {
+            logger.debug("user name is null.");
+        }
+
         return info;
     }
 
